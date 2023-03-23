@@ -18,24 +18,25 @@
 
     <p id="resultado"></p>
 
-    <script>
-      function calcularCusto(event) {
-        event.preventDefault();
+   <script>
+  function calcularCusto(event) {
+    event.preventDefault();
 
-        const tamanhoDaBase = document.getElementById('tamanho_da_base').value;
-        const mediaDeMAUs = document.getElementById('media_ma_us').value;
-        const custoPorMensagem = 0.35;
-        let custoTotal = tamanhoDaBase * custoPorMensagem;
+    const tamanhoDaBase = document.getElementById('tamanho_da_base').value;
+    const mediaDeMAUs = document.getElementById('media_ma_us').value;
+    const custoPorMensagem = 0.35;
+    let custoTotal = tamanhoDaBase * custoPorMensagem;
+    let custoDeMAUs = 0;
 
-        if (mediaDeMAUs > 4000) {
-          const mausAcimaDoLimite = mediaDeMAUs - 4000;
-          const custoAdicional = mausAcimaDoLimite * 1.0;
-          custoTotal += custoAdicional;
-        }
+    if (mediaDeMAUs > 4000) {
+      const mausAcimaDoLimite = mediaDeMAUs - 4000;
+      custoDeMAUs = mausAcimaDoLimite * 1.0;
+      custoTotal += custoDeMAUs;
+    }
 
-        const resultado = `O custo total da campanha será R$${custoTotal.toFixed(2)}, com um custo por mensagem de R$${custoPorMensagem.toFixed(2)}.`;
-        document.getElementById('resultado').textContent = resultado;
-      }
-    </script>
+    const resultado = `O custo total da campanha será R$${custoTotal.toFixed(2)}, com um custo por mensagem de R$${custoPorMensagem.toFixed(2)}.${custoDeMAUs > 0 ? ` Houve um custo adicional de R$${custoDeMAUs.toFixed(2)} devido ao uso de ${mediaDeMAUs} MAUs acima do limite.` : ''}`;
+    document.getElementById('resultado').textContent = resultado;
+  }
+</script>
   </body>
 </html>
