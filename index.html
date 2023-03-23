@@ -22,19 +22,22 @@
   function calcularCusto(event) {
     event.preventDefault();
 
-    const tamanhoDaBase = document.getElementById('tamanho_da_base').value;
-    const mediaDeMAUs = document.getElementById('media_ma_us').value;
+    const tamanhoDaBase = parseInt(document.getElementById('tamanho_da_base').value);
     const custoPorMensagem = 0.35;
-    let custoTotal = tamanhoDaBase * custoPorMensagem;
-    let custoDeMAUs = 0;
 
-    if (mediaDeMAUs > 4000) {
-      const mausAcimaDoLimite = mediaDeMAUs - 4000;
-      custoDeMAUs = mausAcimaDoLimite * 1.0;
-      custoTotal += custoDeMAUs;
+    if (isNaN(tamanhoDaBase) || tamanhoDaBase <= 0) {
+      document.getElementById('resultado').textContent = 'O tamanho da base deve ser um número positivo.';
+      return;
     }
 
-    const resultado = `O custo total da campanha será R$${custoTotal.toFixed(2)}, com um custo por mensagem de R$${custoPorMensagem.toFixed(2)}.${custoDeMAUs > 0 ? ` Houve um custo adicional de R$${custoDeMAUs.toFixed(2)} devido ao uso de ${mediaDeMAUs} MAUs acima do limite.` : ''}`;
+    let custoDeMAUs = 0;
+    if (tamanhoDaBase > 4000) {
+      const mausAcimaDoLimite = tamanhoDaBase - 4000;
+      custoDeMAUs = mausAcimaDoLimite * 1.0;
+    }
+
+    const custoTotal = tamanhoDaBase * custoPorMensagem + custoDeMAUs;
+    const resultado = `O custo total da campanha será R$${custoTotal.toFixed(2)}, com um custo por mensagem de R$${custoPorMensagem.toFixed(2)}${custoDeMAUs > 0 ? `. Além disso, haverá um custo adicional de R$${custoDeMAUs.toFixed(2)} devido ao uso de ${tamanhoDaBase} destinatários acima do limite de 4000.` : '.'}`;
     document.getElementById('resultado').textContent = resultado;
   }
 </script>
