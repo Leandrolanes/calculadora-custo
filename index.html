@@ -20,9 +20,11 @@
         event.preventDefault();
 
         const tamanhoDaBase = document.getElementById('tamanho_da_base').value;
-        const custo = (tamanhoDaBase * 0.35) + (tamanhoDaBase > 4000 ? 1 : 0);
+        const custoPorMensagem = 0.35;
+        const custoTotal = (tamanhoDaBase * custoPorMensagem) + (tamanhoDaBase > 4000 ? 1 : 0);
 
-        document.getElementById('resultado').textContent = `O custo da campanha será R$${custo.toFixed(2)}.`;
+        const resultado = `O custo total da campanha será R$${custoTotal.toFixed(2)}, com um custo por mensagem de R$${custoPorMensagem.toFixed(2)}.`;
+        document.getElementById('resultado').textContent = resultado;
       }
     </script>
   </body>
