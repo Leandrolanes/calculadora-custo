@@ -10,6 +10,9 @@
       <label for="tamanho_da_base">Tamanho da base:</label>
       <input type="number" id="tamanho_da_base" name="tamanho_da_base" required>
 
+      <label for="media_ma_us">Média de uso de MAUs:</label>
+      <input type="number" id="media_ma_us" name="media_ma_us" required>
+
       <button type="submit">Calcular</button>
     </form>
 
@@ -20,8 +23,15 @@
         event.preventDefault();
 
         const tamanhoDaBase = document.getElementById('tamanho_da_base').value;
+        const mediaDeMAUs = document.getElementById('media_ma_us').value;
         const custoPorMensagem = 0.35;
-        const custoTotal = (tamanhoDaBase * custoPorMensagem) + (tamanhoDaBase > 4000 ? 1 : 0);
+        let custoTotal = tamanhoDaBase * custoPorMensagem;
+
+        if (mediaDeMAUs > 4000) {
+          const mausAcimaDoLimite = mediaDeMAUs - 4000;
+          const custoAdicional = mausAcimaDoLimite * 1.0;
+          custoTotal += custoAdicional;
+        }
 
         const resultado = `O custo total da campanha será R$${custoTotal.toFixed(2)}, com um custo por mensagem de R$${custoPorMensagem.toFixed(2)}.`;
         document.getElementById('resultado').textContent = resultado;
