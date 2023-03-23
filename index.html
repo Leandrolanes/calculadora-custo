@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculadora de custo de campanhas de disparo de WhatsApp Business API</title>
+  </head>
+  <body>
+    <h1>Calculadora de custo de campanhas de disparo de WhatsApp Business API</h1>
+
+    <form onsubmit="calcularCusto(event)">
+      <label for="tamanho_da_base">Tamanho da base:</label>
+      <input type="number" id="tamanho_da_base" name="tamanho_da_base" required>
+
+      <button type="submit">Calcular</button>
+    </form>
+
+    <p id="resultado"></p>
+
+    <script>
+      function calcularCusto(event) {
+        event.preventDefault();
+
+        const tamanhoDaBase = document.getElementById('tamanho_da_base').value;
+        const custo = (tamanhoDaBase * 0.35) + (tamanhoDaBase > 4000 ? 1 : 0);
+
+        document.getElementById('resultado').textContent = `O custo da campanha será R$${custo.toFixed(2)}.`;
+      }
+    </script>
+  </body>
+</html>
