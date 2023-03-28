@@ -3,11 +3,11 @@
   <head>
     <title>Gerador de ideias de campanhas de WhatsApp para o Dia das Mães</title>
   </head>
-  <body>
-    <h1>Gerador de ideias de campanhas de WhatsApp para o Dia das Mães</h1>
-    <p>Clique no botão abaixo para gerar uma ideia de campanha de WhatsApp:</p>
-    <button type="button" onclick="gerarIdeia()">Gerar ideia</button>
-    <div id="resultado"></div>
+  <body style="background-color: #fff;">
+    <h1 style="color: #fcd116; text-align: center; margin-top: 50px;">Gerador de ideias de campanhas de WhatsApp para o Dia das Mães</h1>
+    <p style="text-align: center; font-size: 20px;">Clique no botão abaixo para gerar uma ideia de campanha de WhatsApp:</p>
+    <button type="button" onclick="gerarIdeia()" style="display: block; margin: 0 auto; background-color: #fcd116; color: #fff; border: none; border-radius: 10px; padding: 10px 20px; font-size: 20px; font-weight: bold; cursor: pointer;">Gerar ideia</button>
+    <div id="resultado" style="margin-top: 50px; text-align: center;"></div>
     <script>
       function gerarIdeia() {
         let ideias = [
@@ -27,8 +27,8 @@
         let resultado = document.getElementById('resultado');
         let index = Math.floor(Math.random() * ideias.length);
         let ideia = ideias[index];
-        resultado.innerHTML = `<p>${ideia.texto}</p><img src="${ideia.imagem}" alt="imagem da campanha">`;
+        resultado.innerHTML = `<p style="color: #fcd116; font-size: 20px;">${ideia.texto}</p><img src="${ideia.imagem}" alt="imagem da campanha">`;
       }
     </script>
   </body>
-</html>
+</html> 
